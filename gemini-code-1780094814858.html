@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RaissamQcm - Nouvelle Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- 🎨 Styles Globaux --- */
+        :root {
+            --primary-blue: #1d4ed8; 
+            --light-blue: #eff6ff; 
+            --text-dark: #111827;
+            --text-gray: #6b7280;
+            --bg-color: #f8fafc;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-dark); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- 🏷️ En-tête (Header) --- */
+        header { background-color: #fff; padding: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .logo i { color: var(--primary-blue); font-size: 1.8rem; }
+        nav ul { display: flex; list-style: none; gap: 30px; }
+        nav ul li a { font-weight: 500; color: var(--text-gray); transition: color 0.3s; }
+        nav ul li a:hover { color: var(--primary-blue); }
+        .btn-primary { background-color: var(--primary-blue); color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 500; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: background 0.3s; }
+        .btn-primary:hover { background-color: #1e3a8a; color: #fff; }
+
+        /* --- 🚧 Contenu Central --- */
+        .page-content { flex: 1; display: flex; align-items: center; justify-content: center; padding: 60px 20px; }
+        .placeholder-box { background: #fff; padding: 50px; border-radius: 20px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.05); max-width: 600px; width: 100%; border: 1px solid #e5e7eb; }
+        .placeholder-icon { font-size: 4rem; color: var(--primary-blue); margin-bottom: 20px; }
+        .placeholder-box h1 { font-size: 2rem; margin-bottom: 15px; color: var(--text-dark); }
+        .placeholder-box p { color: var(--text-gray); font-size: 1.1rem; margin-bottom: 30px; }
+        
+        /* --- 📝 Pied de page --- */
+        footer { text-align: center; padding: 30px 0; color: var(--text-gray); font-size: 0.9rem; border-top: 1px solid #e5e7eb; background: #fff; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .header-content { flex-direction: column; gap: 15px; }
+            nav ul { padding: 0; flex-wrap: wrap; justify-content: center; gap: 15px; }
+            .placeholder-box { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-heart-pulse"></i> RaissamQcm
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="#">QCM</a></li>
+                    <li><a href="#">Catégories</a></li>
+                    <li><a href="#">À propos</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="btn-primary"><i class="fa-regular fa-user"></i> Se connecter</a>
+        </div>
+    </header>
+
+    <main class="page-content">
+        <div class="placeholder-box">
+            <i class="fa-solid fa-laptop-medical placeholder-icon"></i>
+            <h1>Page en construction 🚧</h1>
+            <p>C'est ici que vous pourrez ajouter le contenu de votre choix ! Textes, questions de QCM, ou de nouvelles catégories.</p>
+            
+            <a href="index.html" class="btn-primary" style="padding: 12px 25px; font-size: 1.1rem;">
+                <i class="fa-solid fa-arrow-left"></i> Retour à l'accueil
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            © 2024 RaissamQcm - Tous droits réservés.
+        </div>
+    </footer>
+
+</body>
+</html>

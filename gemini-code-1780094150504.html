@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RaissamQcm - Choisissez votre bloc</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- 🎨 Styles Globaux --- */
+        :root {
+            --primary-blue: #1d4ed8; 
+            --light-blue: #eff6ff; 
+            --text-dark: #111827;
+            --text-gray: #6b7280;
+            --bg-color: #f8fafc;
+            --border-color: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- 🏷️ En-tête (Header) --- */
+        header {
+            background-color: #fff;
+            padding: 0 20px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 250px; 
+        }
+
+        .logo i {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            height: 100%;
+        }
+
+        nav ul li {
+            height: 100%;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            color: var(--text-gray);
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            height: 100%;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav ul li a.active {
+            color: var(--primary-blue);
+            border-bottom: 3px solid var(--primary-blue);
+            font-weight: 600;
+        }
+
+        nav ul li a:hover:not(.active) {
+            color: var(--primary-blue);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #1e3a8a;
+        }
+
+        /* --- 🗂️ Structure principale (Dashboard) --- */
+        .app-layout {
+            display: flex;
+            flex: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* --- 🧭 Barre latérale (Sidebar) --- */
+        .sidebar {
+            width: 250px;
+            background-color: #fff;
+            border-right: 1px solid var(--border-color);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-section {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-title {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            padding-left: 10px;
+        }
+
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .sidebar-item:hover {
+            background-color: #f3f4f6;
+        }
+
+        .sidebar-item.active {
+            background-color: var(--light-blue);
+            color: var(--primary-blue);
+        }
+
+        .sidebar-item i {
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Switch Mode Sombre */
+        .dark-mode-container {
+            margin-top: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .dark-mode-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .dark-mode-info i {
+            color: var(--primary-blue);
+        }
+
+        .toggle-switch {
+            width: 40px;
+            height: 22px;
+            background-color: #d1d5db;
+            border-radius: 20px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 18px;
+            height: 18px;
+            background-color: #fff;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        /* --- 📄 Contenu Principal --- */
+        .main-content {
+            flex: 1;
+            padding: 40px 60px;
+        }
+
+        /* Entête du contenu */
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title h1 {
+            font-size: 2.2rem;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .page-title p {
+            color: var(--text-gray);
+            font-size: 1rem;
+        }
+
+        .info-card {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            max-width: 400px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .info-icon {
+            background-color: var(--light-blue);
+            color: var(--primary-blue);
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .info-text h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .info-text p {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        /* Barre de recherche */
+        .search-bar {
+            background: #fff;
+            padding: 15px 25px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        .search-bar i {
+            color: var(--text-gray);
+            margin-right: 15px;
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 1rem;
+            color: var(--text-dark);
+        }
+
+        /* Liste des blocs */
+        .blocks-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .block-card {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            border: 1px solid transparent;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .block-card:hover {
+            border-color: var(--border-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transform: translateY(-2px);
+        }
+
+        .badge {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 25px;
+            flex-shrink: 0;
+        }
+
+        .badge-s8 { background-color: var(--light-blue); color: #2563eb; }
+        .badge-s9 { background-color: #dcfce7; color: #16a34a; }
+        .badge-s10 { background-color: #f3e8ff; color: #9333ea; }
+
+        .block-info {
+            flex: 1;
+        }
+
+        .block-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--text-dark);
+        }
+
+        .block-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .chevron {
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 992px) {
+            .content-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+            .info-card { max-width: 100%; }
+            .main-content { padding: 30px; }
+        }
+
+        @media (max-width: 768px) {
+            .header-content { height: auto; flex-direction: column; padding: 15px 0; gap: 15px; }
+            .logo { width: 100%; justify-content: center; }
+            nav ul { flex-wrap: wrap; justify-content: center; gap: 10px; }
+            nav ul li a { padding: 10px; border-bottom: none; }
+            nav ul li a.active { border-bottom: none; color: var(--primary-blue); background: var(--light-blue); border-radius: 8px; }
+            
+            .app-layout { flex-direction: column; }
+            .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border-color); padding: 20px; }
+            .main-content { padding: 20px; }
+            .badge { width: 50px; height: 50px; font-size: 1.2rem; margin-right: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-heart-pulse"></i> RaissamQcm
+            </a>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="qcm.html" class="active">QCM</a></li>
+                    <li><a href="categories.html">Catégories</a></li>
+                    <li><a href="statistiques.html">Statistiques</a></li>
+                    <li><a href="a-propos.html">À propos</a></li>
+                </ul>
+            </nav>
+            
+            <a href="connexion.html" class="btn-primary">
+                <i class="fa-regular fa-user"></i> Se connecter
+            </a>
+        </div>
+    </header>
+
+    <div class="app-layout">
+        
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">QCM</div>
+                <div class="sidebar-menu">
+                    <a href="https://issamradi.github.io/RaissamQcm/" class="sidebar-item active">
+                        <i class="fa-solid fa-table-cells-large"></i> Semestre 8
+                    </a>
+                    
+                    <a href="page-questions-s9.html" class="sidebar-item">
+                        <i class="fa-solid fa-table-cells-large"></i> Semestre 9
+                    </a>
+                    
+                    <a href="page-questions-s10.html" class="sidebar-item">
+                        <i class="fa-solid fa-table-cells-large"></i> Semestre 10
+                    </a>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Autres</div>
+                <div class="sidebar-menu">
+                    <a href="a-propos.html" class="sidebar-item">
+                        <i class="fa-solid fa-circle-info"></i> À propos
+                    </a>
+                    <a href="aide.html" class="sidebar-item">
+                        <i class="fa-regular fa-circle-question"></i> Aide
+                    </a>
+                </div>
+            </div>
+
+            <div class="dark-mode-container">
+                <div class="dark-mode-info">
+                    <i class="fa-solid fa-moon"></i> Mode sombre
+                </div>
+                <div class="toggle-switch"></div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <div class="content-header">
+                <div class="page-title">
+                    <h1>Choisissez votre bloc</h1>
+                    <p>Sélectionnez un bloc pour accéder aux QCM et tester vos connaissances.</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fa-regular fa-file-lines"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>Comment ça fonctionne ?</h4>
+                        <p>Choisissez un bloc, répondez aux questions et suivez votre progression.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Rechercher un bloc...">
+            </div>
+
+            <div class="blocks-list">
+                
+                <a href="https://issamradi.github.io/RaissamQcm/" class="block-card">
+                    <div class="badge badge-s8">S8</div>
+                    <div class="block-info">
+                        <h3>Semestre 8</h3>
+                        <div class="block-meta">
+                            <i class="fa-regular fa-file-lines"></i> Questions disponibles
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right chevron"></i>
+                </a>
+
+                <a href="page-questions-s9.html" class="block-card">
+                    <div class="badge badge-s9">S9</div>
+                    <div class="block-info">
+                        <h3>Semestre 9</h3>
+                        <div class="block-meta">
+                            <i class="fa-regular fa-file-lines"></i> Questions disponibles
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right chevron"></i>
+                </a>
+
+                <a href="page-questions-s10.html" class="block-card">
+                    <div class="badge badge-s10">S10</div>
+                    <div class="block-info">
+                        <h3>Semestre 10</h3>
+                        <div class="block-meta">
+                            <i class="fa-regular fa-file-lines"></i> Questions disponibles
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right chevron"></i>
+                </a>
+
+            </div>
+
+        </main>
+    </div>
+
+</body>
+</html>

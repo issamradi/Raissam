@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RaissamQcm - Révisez la médecine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- 🎨 Styles Globaux --- */
+        :root {
+            --primary-blue: #1d4ed8; 
+            --light-blue: #eff6ff; 
+            --text-dark: #111827;
+            --text-gray: #6b7280;
+            --bg-color: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- 🏷️ En-tête (Header) --- */
+        header {
+            background-color: #fff;
+            padding: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            margin-bottom: 40px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            color: var(--text-gray);
+            transition: color 0.3s;
+        }
+
+        nav ul li a.active, nav ul li a:hover {
+            color: var(--primary-blue);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #1e3a8a;
+            color: #fff;
+        }
+
+        .btn-outline {
+            background-color: #fff;
+            color: var(--text-dark);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background-color: #f3f4f6;
+        }
+
+        /* --- 🚀 Section Héro --- */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+            gap: 40px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .hero-text h1 span {
+            color: var(--primary-blue);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .hero-stats {
+            flex: 1;
+            display: flex;
+            gap: 20px;
+            justify-content: flex-end;
+        }
+
+        .stat-card {
+            background: #fff;
+            padding: 30px 20px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            min-width: 140px;
+            flex: 1;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px auto;
+            font-size: 1.5rem;
+        }
+
+        .icon-blue { background: #e0e7ff; color: #4f46e5; }
+        .icon-green { background: #dcfce7; color: #16a34a; }
+        .icon-purple { background: #f3e8ff; color: #9333ea; }
+
+        .stat-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        /* --- 🔍 Barre de Recherche --- */
+        .search-bar {
+            background: #fff;
+            padding: 15px 25px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+            margin-bottom: 40px;
+        }
+
+        .search-bar i {
+            color: var(--text-gray);
+            margin-right: 15px;
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 1rem;
+            color: var(--text-dark);
+        }
+
+        /* --- 🗂️ Catégories Populaires --- */
+        .categories-section {
+            margin-bottom: 50px;
+        }
+
+        .categories-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+        }
+
+        .category-card {
+            background: #fff;
+            padding: 30px 15px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+            border: 1px solid #f3f4f6;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+        }
+
+        .cat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .color-cardio { color: #ef4444; }
+        .color-pneumo { color: #3b82f6; }
+        .color-neuro { color: #a855f7; }
+        .color-gastro { color: #22c55e; }
+        .color-hemato { color: #ef4444; }
+        .color-plus { color: #9ca3af; }
+
+        .category-card p {
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* --- 🎯 Mode Examen --- */
+        .exam-mode {
+            background-color: var(--light-blue);
+            border: 1px solid #bfdbfe;
+            border-radius: 16px;
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .exam-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .exam-icon {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+        }
+
+        .exam-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .exam-text p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .btn-exam {
+            background-color: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .btn-exam:hover {
+            background-color: var(--primary-blue);
+            color: #fff;
+        }
+
+        /* --- 📝 Pied de page --- */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 992px) {
+            .hero { flex-direction: column; text-align: center; gap: 30px; }
+            .hero-text p { margin: 0 auto 30px auto; }
+            .hero-buttons { justify-content: center; }
+            .hero-stats { width: 100%; }
+            .categories-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .header-content { flex-direction: column; gap: 15px; }
+            nav ul { padding: 0; flex-wrap: wrap; justify-content: center; gap: 15px; }
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-stats { flex-wrap: wrap; justify-content: center; }
+            .exam-mode { flex-direction: column; text-align: center; gap: 20px; }
+            .exam-info { flex-direction: column; }
+        }
+        @media (max-width: 480px) {
+            .categories-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-buttons { flex-direction: column; width: 100%; }
+            .hero-buttons a { width: 100%; }
+            .stat-card { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-heart-pulse"></i> RaissamQcm
+            </a>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Accueil</a></li>
+                    <li><a href="liste-qcm.html">QCM</a></li>
+                    <li><a href="categories.html">Catégories</a></li>
+                    <li><a href="a-propos.html">À propos</a></li>
+                </ul>
+            </nav>
+            
+            <a href="connexion.html" class="btn-primary">
+                <i class="fa-regular fa-user"></i> Se connecter
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-text">
+                <h1>Révisez la médecine<br>avec des <span>QCM</span>.</h1>
+                <p>Entraînez-vous, testez vos connaissances et progressez efficacement.</p>
+                <div class="hero-buttons">
+                    <a href="https://issamradi.github.io/RaissamQcm/" class="btn-primary">
+                        <i class="fa-regular fa-circle-play"></i> Commencer un QCM
+                    </a>
+                    <a href="categories.html" class="btn-outline">
+                        Parcourir les catégories
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-icon icon-blue"><i class="fa-solid fa-clipboard-list"></i></div>
+                    <h3>5000+</h3>
+                    <p>QCM disponibles</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon icon-green"><i class="fa-solid fa-border-all"></i></div>
+                    <h3>25+</h3>
+                    <p>Catégories</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon icon-purple"><i class="fa-solid fa-user-group"></i></div>
+                    <h3>1200+</h3>
+                    <p>Utilisateurs</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="search-bar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Rechercher une spécialité... (ex : Cardiologie, Neurologie)">
+        </div>
+
+        <section class="categories-section">
+            <h2>Catégories populaires</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <i class="fa-solid fa-heart cat-icon color-cardio"></i>
+                    <p>Cardiologie</p>
+                </div>
+                <div class="category-card">
+                    <i class="fa-solid fa-lungs cat-icon color-pneumo"></i>
+                    <p>Pneumologie</p>
+                </div>
+                <div class="category-card">
+                    <i class="fa-solid fa-brain cat-icon color-neuro"></i>
+                    <p>Neurologie</p>
+                </div>
+                <div class="category-card">
+                    <i class="fa-solid fa-capsules cat-icon color-gastro"></i>
+                    <p>Gastro-entérologie</p>
+                </div>
+                <div class="category-card">
+                    <i class="fa-solid fa-droplet cat-icon color-hemato"></i>
+                    <p>Hématologie</p>
+                </div>
+                <div class="category-card">
+                    <i class="fa-solid fa-ellipsis cat-icon color-plus"></i>
+                    <p>Plus</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="exam-mode">
+            <div class="exam-info">
+                <div class="exam-icon">
+                    <i class="fa-solid fa-bullseye"></i>
+                </div>
+                <div class="exam-text">
+                    <h3>Mode Examen</h3>
+                    <p>Questions aléatoires, chronomètre, correction à la fin.</p>
+                </div>
+            </div>
+            <a href="mode-examen.html" class="btn-exam">Commencer</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            © 2024 RaissamQcm - Tous droits réservés.
+        </div>
+    </footer>
+
+</body>
+</html>
